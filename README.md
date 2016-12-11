@@ -34,3 +34,10 @@ These files need to be copied to x86 directory under the root build directory.
 IF YOU HAVE installed Emgu Cv under ext_lib like described before no changes should be neccessary.
 
 Building 64-bit version has not been tried.
+
+TODO
+====
+
+* overlay for chat with button to turn it on/off
+* button to disable the minimum size limitation
+* custom user defined keybindings
