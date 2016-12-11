@@ -1,0 +1,6 @@
+HaxWin/bin
+HaxWin/obj
+*.user
+*.suo
+.vc
+libemgucv
