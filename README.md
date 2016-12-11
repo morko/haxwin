@@ -12,7 +12,7 @@ Installing Emgu Cv
 extract under ext_lib and rename the folder to "libemgucv" without the quotes.
 This way you dont have edit any references.
 
-* Alternative: edit the reference to Emgu.CV.World.dll to point to correspondig file under
+* Alternative: edit the reference to Emgu.CV.World.dll to point to corresponding file under
 where you have installed Emgu Cv
 
 Building for Windows
@@ -24,9 +24,10 @@ the build directory (from where you have installed Emgu Cv).
 * Alternatively you can copy the files manually after building the project.
 
 Required files are:
-[emgu]\bin\x86\cvextern.dll
-[emgu]\bin\x86\msvcp120.dll
-[emgu]\bin\x86\msvcr120.dll
+
+* [emgu]\bin\x86\cvextern.dll
+* [emgu]\bin\x86\msvcp120.dll
+* [emgu]\bin\x86\msvcr120.dll
 
 These files need to be copied to x86 directory under the root build directory.
 
