@@ -54,7 +54,11 @@ namespace HaxWin
             this.autoJoinButton = new System.Windows.Forms.CheckBox();
             this.alwaysOnTopButton = new System.Windows.Forms.CheckBox();
             this.browser = new Skybound.Gecko.GeckoWebBrowser();
+            this.chatOverlayPanel = new System.Windows.Forms.Panel();
+            this.chatOverlayButton = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -63,12 +67,10 @@ namespace HaxWin
             this.flowLayoutPanel1.Controls.Add(this.label1);
             this.flowLayoutPanel1.Controls.Add(this.urlTextBox);
             this.flowLayoutPanel1.Controls.Add(this.goButton);
-            this.flowLayoutPanel1.Controls.Add(this.autoJoinButton);
-            this.flowLayoutPanel1.Controls.Add(this.alwaysOnTopButton);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(865, 36);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(674, 36);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // label1
@@ -110,8 +112,7 @@ namespace HaxWin
             this.autoJoinButton.BackColor = System.Drawing.Color.FloralWhite;
             this.autoJoinButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.LawnGreen;
             this.autoJoinButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.autoJoinButton.Location = new System.Drawing.Point(704, 7);
-            this.autoJoinButton.Margin = new System.Windows.Forms.Padding(85, 2, 3, 3);
+            this.autoJoinButton.Location = new System.Drawing.Point(17, 7);
             this.autoJoinButton.Name = "autoJoinButton";
             this.autoJoinButton.Size = new System.Drawing.Size(58, 23);
             this.autoJoinButton.TabIndex = 4;
@@ -126,8 +127,7 @@ namespace HaxWin
             this.alwaysOnTopButton.BackColor = System.Drawing.Color.FloralWhite;
             this.alwaysOnTopButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.LawnGreen;
             this.alwaysOnTopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.alwaysOnTopButton.Location = new System.Drawing.Point(768, 7);
-            this.alwaysOnTopButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
+            this.alwaysOnTopButton.Location = new System.Drawing.Point(90, 7);
             this.alwaysOnTopButton.Name = "alwaysOnTopButton";
             this.alwaysOnTopButton.Size = new System.Drawing.Size(89, 23);
             this.alwaysOnTopButton.TabIndex = 5;
@@ -143,22 +143,61 @@ namespace HaxWin
             this.browser.Size = new System.Drawing.Size(1085, 772);
             this.browser.TabIndex = 2;
             // 
+            // chatOverlayPanel
+            // 
+            this.chatOverlayPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.chatOverlayPanel.Location = new System.Drawing.Point(0, 550);
+            this.chatOverlayPanel.Name = "chatOverlayPanel";
+            this.chatOverlayPanel.Size = new System.Drawing.Size(740, 146);
+            this.chatOverlayPanel.TabIndex = 3;
+            this.chatOverlayPanel.Visible = false;
+            // 
+            // chatOverlayButton
+            // 
+            this.chatOverlayButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.chatOverlayButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chatOverlayButton.AutoSize = true;
+            this.chatOverlayButton.BackColor = System.Drawing.Color.FloralWhite;
+            this.chatOverlayButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.LawnGreen;
+            this.chatOverlayButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chatOverlayButton.Location = new System.Drawing.Point(101, 41);
+            this.chatOverlayButton.Name = "chatOverlayButton";
+            this.chatOverlayButton.Size = new System.Drawing.Size(78, 23);
+            this.chatOverlayButton.TabIndex = 5;
+            this.chatOverlayButton.Text = "Chat Overlay";
+            this.chatOverlayButton.UseVisualStyleBackColor = false;
+            this.chatOverlayButton.CheckedChanged += new System.EventHandler(this.chatOverlayButton_CheckedChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel1.Controls.Add(this.chatOverlayButton);
+            this.panel1.Controls.Add(this.autoJoinButton);
+            this.panel1.Controls.Add(this.alwaysOnTopButton);
+            this.panel1.Location = new System.Drawing.Point(673, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(192, 89);
+            this.panel1.TabIndex = 3;
+            // 
             // HaxWinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(158)))), ((int)(((byte)(127)))));
             this.ClientSize = new System.Drawing.Size(864, 696);
+            this.Controls.Add(this.chatOverlayPanel);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.browser);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(880, 735);
             this.Name = "HaxWinForm";
             this.Text = "HaxWin";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HaxWinForm_FormClosing);
             this.Load += new System.EventHandler(this.HaxWin_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -171,5 +210,8 @@ namespace HaxWin
         private Skybound.Gecko.GeckoWebBrowser browser;
         private System.Windows.Forms.CheckBox autoJoinButton;
         private System.Windows.Forms.CheckBox alwaysOnTopButton;
+        private System.Windows.Forms.Panel chatOverlayPanel;
+        private System.Windows.Forms.CheckBox chatOverlayButton;
+        private System.Windows.Forms.Panel panel1;
     }
 }

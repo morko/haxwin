@@ -304,6 +304,11 @@ namespace HaxWin
         {
             urlTextBox.SelectAll();
         }
+
+        private void chatOverlayButton_CheckedChanged(object sender, EventArgs e)
+        {
+            chatOverlayPanel.Visible = chatOverlayButton.Checked ? true : false;
+        }
     }
     /*
      * x and y point to the top left corner of the object 
