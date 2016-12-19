@@ -38,8 +38,6 @@ Building 64-bit version has not been tried.
 TODO
 ====
 
-* overlay for chat with button to turn it on/off
-* button to disable the minimum size limitation
 * ability stretch/zoom the haxball window
 * custom user defined keybindings
 * implement roomlist to the browser
