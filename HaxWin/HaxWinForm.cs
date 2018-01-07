@@ -24,6 +24,8 @@ using System.Drawing.Imaging;
 using Emgu.CV;
 using Skybound.Gecko;
 using System.Diagnostics;
+using HttpProxy;
+using System.Threading;
 
 namespace HaxWin
 {
@@ -40,6 +42,8 @@ namespace HaxWin
 
         private StdInReciever reciever;
         private HaxWinAutoJoin autoJoin;
+        private Proxy proxy;
+        private Thread proxyThread;
 
         private string xulrunnerPath = Path.Combine(
                 Directory.GetCurrentDirectory(), "xulrunner");
@@ -48,6 +52,10 @@ namespace HaxWin
 
         public HaxWinForm()
         {
+            proxy = new Proxy();
+            proxyThread = new Thread(new ThreadStart(proxy.Start));
+            proxyThread.Start();
+
             InitializeComponent();
 
             this.autoJoin = new HaxWinAutoJoin(this);
@@ -55,13 +63,17 @@ namespace HaxWin
             var xulrpath = Path.Combine(Directory.GetCurrentDirectory(), "xulrunner");
             Xpcom.Initialize(xulrpath);
             GeckoPreferences.Default["extensions.blocklist.enabled"] = false;
+            GeckoPreferences.Default["javascript.enabled"] = true;
+            GeckoPreferences.Default["network.proxy.type"] = 1;
+            GeckoPreferences.Default["network.proxy.http"] = "127.0.0.1";
+            GeckoPreferences.Default["network.proxy.http_port"] = 8080;
 
             browser.DocumentCompleted += new EventHandler(onDocumentLoaded);
         }
 
         private void HaxWin_Load(object sender, EventArgs e)
         {
-            navigate("http://www.haxball.com/");
+            navigate("http://www.haxball.com");
 
             string[] clargs = Environment.GetCommandLineArgs();
             if (clargs.Length > 1 && clargs[1] == "--com")
@@ -103,6 +115,7 @@ namespace HaxWin
 
         private void HaxWinForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            proxy.Stop();
             if (reciever != null)
                 reciever.stop();
             Debug.WriteLine("HaxWinForm closing.");
@@ -110,13 +123,13 @@ namespace HaxWin
 
         private void onDocumentLoaded(object sender, EventArgs e)
         {
+            Debug.WriteLine("Loaded.");
             removeHaxBallAds();
         }
 
         public void navigate(string url)
         {
-            if (url.StartsWith("http://www.haxball.com/",
-                                StringComparison.CurrentCulture))
+            if (url.StartsWith("http://www.haxball.com", StringComparison.CurrentCulture))
             {
                 browser.Navigate(url);
                 urlTextBox.Text = url;
